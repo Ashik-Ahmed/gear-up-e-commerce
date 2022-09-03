@@ -9,6 +9,10 @@ import Navbar from './components/Shared/Navbar/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import Purchase from './components/Products/Purchase';
+import Dashboard from './components/Dashboard/Dashboard';
+import MyProfile from './components/Dashboard/MyProfile/MyProfile';
+import MyOrders from './components/Dashboard/MyOrders/MyOrders';
+import AddReview from './components/Dashboard/AddReview/AddReview';
 
 function App() {
   return (
@@ -23,6 +27,30 @@ function App() {
             <Purchase />
           </RequireAuth>
         }></Route>
+
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }>
+
+          <Route index element={
+            <RequireAuth>
+              <MyProfile />
+            </RequireAuth>
+          }></Route>
+          <Route path='my-orders' element={
+            <RequireAuth>
+              <MyOrders />
+            </RequireAuth>
+          }></Route>
+          <Route path='add-review' element={
+            <RequireAuth>
+              <AddReview />
+            </RequireAuth>
+          }></Route>
+
+        </Route>
 
 
         <Route path='*' element></Route>

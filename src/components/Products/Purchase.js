@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useProduct from '../../hooks/useProduct';
 import Loading from '../Shared/Loading/Loading';
@@ -15,8 +16,7 @@ const Purchase = () => {
         return <Loading />
     }
 
-    const { name, image, description, minimum, quantity, price } = product;
-
+    const { _id, name, image, description, minimum, quantity, price } = product;
 
     const handlePlaceOrder = (e) => {
         e.preventDefault();
@@ -26,12 +26,51 @@ const Purchase = () => {
         const address = e.target.address.value;
 
         if (orderQuantity >= minimum && orderQuantity <= quantity) {
-            console.log(authUser.email, ' ', orderQuantity, ' ', name, ' ', phone, ' ', address);
+
+            const orderDetails = {
+                productId: _id,
+                quantity: orderQuantity,
+                amount: orderQuantity * parseInt(price),
+                payment: 'pending',
+                customerEmail: authUser.email,
+                customerName: name,
+                customerPhone: phone,
+                customerAddress: address,
+
+            }
+
+            fetch('http://localhost:5000/confirm-purchase', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(orderDetails)
+            }).then(res => res.json()).then(data => {
+                if (data.acknowledged === true) {
+                    toast.success('Order Placed successfully');
+
+                    //update product quantity
+                    const updatedProduct = {
+                        quantity: parseInt(quantity) - orderQuantity,
+                    }
+
+                    fetch(`http://localhost:5000/update-product/${_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(updatedProduct)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            e.target.reset();
+                        })
+                }
+            })
         }
         else {
             alert('Quantity not matched')
         }
-        e.target.reset();
     }
 
     return (
