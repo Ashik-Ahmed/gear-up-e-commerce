@@ -45,24 +45,24 @@ const Purchase = () => {
                             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{name}</h1>
                             <div class="flex mb-4">
                                 <span class="flex items-center">
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-cyan-500" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-cyan-500" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-cyan-500" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-cyan-500" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-cyan-500" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
                                     <span class="text-gray-600 ml-3">4 Reviews</span>
                                 </span>
-                                <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                                <span class="flex ml-3 pl-3 py-2 border-l-2 border-cyan-500 space-x-2s">
                                     <h2 class="text-sm title-font text-gray-500 tracking-widest">Min. Order: {minimum}pcs</h2>
                                 </span>
                             </div>
@@ -75,9 +75,9 @@ const Purchase = () => {
                         </div>
                     </div>
 
-                    <div className='text-left border-l-2 border-indigo-500 w-1/2 pl-6 '>
+                    <div className='text-left border-l-2 border-cyan-500 w-1/2 pl-6 '>
                         <form onSubmit={handlePlaceOrder}>
-                            <p className='text-xl font-semibold'>Order Information</p>
+                            <p className='text-xl font-bold text-cyan-600'>Order Information</p>
                             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
 
                                 <div class="flex items-center gap-2">
@@ -104,34 +104,34 @@ const Purchase = () => {
                                 </div>
                                 <div class="flex ml-4">
                                     <span class="mr-3">Color</span>
-                                    <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
+                                    <button class="border-2 border-gray-300 bg-white rounded-full w-6 h-6 focus:outline-none"></button>
                                     <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-                                    <button class="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
+                                    <button class="border-2 border-gray-300 ml-1 bg-cyan-500 rounded-full w-6 h-6 focus:outline-none"></button>
                                 </div>
                             </div>
 
                             <div>
-                                <p className='text-xl font-semibold'>Shipping Information</p>
+                                <p className='text-xl font-bold text-cyan-600'>Shipping Information</p>
                                 <div className='flex mt-6'>
                                     <div className='w-1/2'>
                                         <div className='mb-4'>
                                             <p>Name</p>
-                                            <input name='name' type="text" placeholder='Name' className='input input-bordered w-3/4' />
+                                            <input name='name' type="text" placeholder='Name' className='input input-bordered w-3/4' required />
                                         </div>
                                         <div>
                                             <p>Phone Number</p>
-                                            <input name='phone' type="text" placeholder='Phone Number' className='input input-bordered w-3/4' />
+                                            <input name='phone' type="text" placeholder='Phone Number' className='input input-bordered w-3/4' required />
                                         </div>
                                     </div>
                                     <div className='w-1/2'>
                                         <p>Address</p>
-                                        <textarea name='address' type="text" placeholder='Address' className='textarea textarea-bordered w-full h-36' />
+                                        <textarea name='address' type="text" placeholder='Address' className='textarea textarea-bordered w-full h-36' required />
                                     </div>
                                 </div>
                             </div>
 
                             <div className='md:mt-12'>
-                                <button type='submit' className='btn btn-primary w-full'>Place Order</button>
+                                <button type='submit' className='btn bg-cyan-600 hover:bg-cyan-700 border-0 w-full'>Place Order</button>
                             </div>
                         </form>
                     </div>

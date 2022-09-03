@@ -73,7 +73,7 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div class="card w-96 bg-base-100 shadow-xl">
                             <div class="card-body">
-                                <h2 class="card-title mx-auto text-3xl font-bold text-primary border-b-4 pb-1">Login</h2>
+                                <h2 class="card-title mx-auto text-3xl font-bold text-cyan-500 border-b-4 pb-1">Login</h2>
 
                                 <div class="form-control w-full max-w-xs">
                                     <label class="label">
@@ -132,14 +132,14 @@ const Login = () => {
                                     </label>
                                     <label class="label">
                                         {/* <button class="label-text-alt link link-hover">Forgot password?</button> */}
-                                        <p class="label-text-alt text-right">New here? <Link to='/signup' className='text-primary font-semibold  link link-hover'>Signup now.</Link></p>
+                                        <p class="label-text-alt text-right">New here? <Link to='/signup' className='text-cyan-600 font-semibold  link link-hover'>Signup now.</Link></p>
                                     </label>
                                 </div>
                                 <div class="card-actions justify-end">
-                                    <input type='submit' class="btn btn-primary w-full" value='Login'></input>
+                                    <input type='submit' class="btn bg-cyan-500 hover:bg-cyan-600 border-0  w-full" value='Login'></input>
                                 </div><div class="divider">OR</div>
                                 <div class="form-control">
-                                    <button onClick={handleSignInWithGoogle} class="btn btn-primary gap-3"><FaGoogle />  Sign in using Google</button>
+                                    <button onClick={handleSignInWithGoogle} class="btn bg-cyan-500 hover:bg-cyan-600 border-0 gap-3"><FaGoogle />  Sign in using Google</button>
                                 </div>
                             </div>
                         </div>
