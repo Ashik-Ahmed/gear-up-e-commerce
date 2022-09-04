@@ -10,12 +10,14 @@ const Dashboard = () => {
                     <Outlet />
                     <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                 </div>
-                <div class="drawer-side md:bg-cyan-500">
+                <div class="drawer-side md:bg-white">
                     <label for="my-drawer-2" class="drawer-overlay"></label>
                     <ul class="menu py-4 overflow-y-auto w-48 text-base-content">
                         <li><Link to='/dashboard'>My Profile</Link></li>
                         <li><Link to='my-orders'>My Orders</Link></li>
                         <li><Link to='add-review'>Add a Review</Link></li>
+                        <li><Link to='manage-users'>Manage Users</Link></li>
+                        <li><Link to='manage-orders'>Manage Orders</Link></li>
                     </ul>
 
                 </div>

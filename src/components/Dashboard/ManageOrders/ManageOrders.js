@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
-import CancelOrderModal from './CancelOrderModal';
-import MyOrderRow from './MyOrderRow';
-import OrderDetailsModal from './OrderDetailsModal';
+import CancelOrderModal from '../MyOrders/CancelOrderModal';
+import MyOrderRow from '../MyOrders/MyOrderRow';
+import OrderDetailsModal from '../MyOrders/OrderDetailsModal';
 
-const MyOrders = () => {
+const ManageOrders = () => {
+
 
     const [modal, setModal] = useState();
 
-    const [authUser] = useAuthState(auth);
-
-    const { data: myOrders, isLoading, refetch } = useQuery('myOrders', () => fetch(`http://localhost:5000/orders?email=${authUser.email}`, {
+    const { data: myOrders, isLoading, refetch } = useQuery('myOrders', () => fetch(`http://localhost:5000/orders`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -21,43 +18,13 @@ const MyOrders = () => {
     })
         .then(res => res.json()))
 
-
-    // const handleOrderCancel = (id) => {
-    //     console.log('Product deleted', id);
-
-    //     fetch(`http://localhost:5000/delete-order?id=${id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             authorization: `Bearer ${localStorage.getItem('accesToken')}`
-    //         }
-    //     }).then(res => res.json()).then(data => {
-    //         console.log(data);
-    //         toast.success('Order Canceled Successfully');
-    //         refetch();
-
-    //         fetch(`http://localhost:5000/update-product/${id}`, {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'content-type': 'application/json'
-    //             },
-    //             body: JSON.stringify(updatedProduct)
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 // e.target.reset();
-    //             })
-    //     })
-    // }
-
     if (isLoading) {
         return <Loading />
     }
 
-    console.log(myOrders);
-
     return (
         <div className='py-6 px-2'>
-            <p className='text-xl font-bold text-cyan-600 text-left pb-2 pl-1'>My Orders</p>
+            <p className='text-xl font-bold text-cyan-600 text-left pb-2 pl-1'>Manage Orders</p>
             <table class="table table-fixed table-compact table-zebra container mx-auto">
                 <thead>
                     <tr>
@@ -89,4 +56,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default ManageOrders;

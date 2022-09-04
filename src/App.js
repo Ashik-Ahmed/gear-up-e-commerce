@@ -13,6 +13,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile/MyProfile';
 import MyOrders from './components/Dashboard/MyOrders/MyOrders';
 import AddReview from './components/Dashboard/AddReview/AddReview';
+import ManageOrders from './components/Dashboard/ManageOrders/ManageOrders';
+import RequireAdmin from './components/RequireAuth/RequireAdmin';
+import ManageUsers from './components/Dashboard/ManageUsers/ManageUsers';
 
 function App() {
   return (
@@ -48,6 +51,18 @@ function App() {
             <RequireAuth>
               <AddReview />
             </RequireAuth>
+          }></Route>
+
+          <Route path='manage-orders' element={
+            <RequireAdmin>
+              <ManageOrders />
+            </RequireAdmin>
+          }></Route>
+
+          <Route path='manage-users' element={
+            <RequireAdmin>
+              <ManageUsers />
+            </RequireAdmin>
           }></Route>
 
         </Route>
