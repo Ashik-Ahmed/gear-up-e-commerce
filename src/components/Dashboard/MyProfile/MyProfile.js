@@ -1,12 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useDBUser from '../../../hooks/useDBUser';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyProfile = () => {
 
+    const [edit, setEdit] = useState(false);
+
     const [authUser] = useAuthState(auth);
-    const [dbUser] = useDBUser(authUser.email);
+    const [dbUser, isLoading, refetch] = useDBUser(authUser.email);
+
+    const handleProfileUpdate = (e) => {
+        e.preventDefault();
+
+        const name = e.target.name.value || dbUser.name;
+        const birthday = e.target.birthday.value || dbUser.birthday;
+        const blood = e.target.blood.value || dbUser.blood;
+        const sex = e.target.sex.value || dbUser.sex;
+        const bio = e.target.bio.value || dbUser.bio;
+
+        console.log(name, birthday, blood, sex, bio);
+
+        const updatedProfile = {
+            name,
+            birthday,
+            blood,
+            sex,
+            bio
+        }
+
+        fetch(`http://localhost:5000/create-user/${dbUser.email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(updatedProfile)
+        }).then(res => res.json()).then(data => {
+            toast.success('Profile Successfully Updated');
+            e.target.reset();
+            setEdit(false)
+            refetch();
+        })
+    }
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div className='w-full md:flex'>
@@ -39,13 +81,65 @@ const MyProfile = () => {
                             <span className='w-2/3'>: {dbUser.bio}</span>
                         </div>
                     </div>
-                    <button className='btn bg-cyan-500 hover:bg-cyan-600 border-0 w-2/3 my-6'>Edit Profile</button>
+                    <button onClick={() => setEdit(true)} className='btn bg-cyan-500 hover:bg-cyan-600 border-0 w-2/3 my-6'>Edit Profile</button>
                 </div>
             </div>
 
-            <div className='w-2/3 bg-white rounded m-4'>
-                <p>Edit Area</p>
-            </div>
+            {
+                edit &&
+                <div className='w-2/3 bg-white rounded m-4 p-4 h-fit'>
+                    <p className='text-2xl font-bold text-cyan-600 border-b-2 inline p-1'>Update Your Profile</p>
+
+                    <form onSubmit={handleProfileUpdate}>
+                        <div className='mt-8'>
+                            <div className='flex gap-4 justify-between'>
+                                <div class="form-control w-full max-w-xs">
+                                    <label class="label">
+                                        <span class="label-text">Full Name</span>
+                                    </label>
+                                    <input name='name' type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                                </div>
+                                <div class="form-control w-full max-w-xs">
+                                    <label class="label">
+                                        <span class="label-text">Date of Birth</span>
+                                    </label>
+                                    <input name='birthday' type="date" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                                </div>
+                            </div>
+                            <div className='flex gap-4 justify-between mt-4'>
+                                <div class="form-control w-full max-w-xs">
+                                    <label class="label">
+                                        <span class="label-text">Blood Group</span>
+                                    </label>
+                                    <input name='blood' type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                                </div>
+                                <div class="form-control w-full max-w-xs">
+                                    <label class="label">
+                                        <span class="label-text">Sex</span>
+                                    </label>
+                                    <select name='sex' class="select select-bordered w-full max-w-xs">
+                                        <option disabled selected>{dbUser.sex}</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Common</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className='flex gap-4 justify-between mt-4'>
+                                <div class="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">Bio</span>
+                                    </label>
+                                    <textarea name='bio' type="text" placeholder="Type here" class="textarea textarea-bordered w-full" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex justify-end'>
+                            <button type='submit' className='btn bg-cyan-500 hover:bg-cyan-600 border-0 my-4'>Update</button>
+                        </div>
+                    </form>
+                </div>
+            }
         </div>
     );
 };
