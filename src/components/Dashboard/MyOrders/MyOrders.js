@@ -3,9 +3,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import useProduct from '../../../hooks/useProduct';
 import Loading from '../../Shared/Loading/Loading';
 import CancelOrderModal from './CancelOrderModal';
 import MyOrderRow from './MyOrderRow';
+import OrderDetailsModal from './OrderDetailsModal';
 
 const MyOrders = () => {
 
@@ -22,20 +24,32 @@ const MyOrders = () => {
         .then(res => res.json()))
 
 
-    const handleOrderCancel = (id) => {
-        console.log('Product deleted', id);
+    // const handleOrderCancel = (id) => {
+    //     console.log('Product deleted', id);
 
-        fetch(`http://localhost:5000/delete-order?id=${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('accesToken')}`
-            }
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            toast.success('Order Canceled Successfully');
-            refetch();
-        })
-    }
+    //     fetch(`http://localhost:5000/delete-order?id=${id}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: `Bearer ${localStorage.getItem('accesToken')}`
+    //         }
+    //     }).then(res => res.json()).then(data => {
+    //         console.log(data);
+    //         toast.success('Order Canceled Successfully');
+    //         refetch();
+
+    //         fetch(`http://localhost:5000/update-product/${id}`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'content-type': 'application/json'
+    //             },
+    //             body: JSON.stringify(updatedProduct)
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 // e.target.reset();
+    //             })
+    //     })
+    // }
 
     if (isLoading) {
         return <Loading />
@@ -61,7 +75,12 @@ const MyOrders = () => {
                     }
                     {
 
-                        modal && <CancelOrderModal myOrder={modal} handleOrderCancel={handleOrderCancel}></CancelOrderModal>
+                        modal && <CancelOrderModal myOrder={modal} refetch={refetch}></CancelOrderModal>
+
+                    }
+                    {
+
+                        modal && <OrderDetailsModal myOrder={modal}></OrderDetailsModal>
 
                     }
                 </tbody>

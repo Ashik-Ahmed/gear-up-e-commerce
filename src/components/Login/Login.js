@@ -13,7 +13,7 @@ import Loading from '../Shared/Loading/Loading';
 const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [authUser, authLoading] = useAuthState(auth);
+    // const [authUser, authLoading] = useAuthState(auth);
 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
@@ -31,7 +31,7 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
     // user sign in successful and failed notification 
     useEffect(() => {
-        if (authUser) {
+        if (token) {
             toast.success("Successfully Logged in");
             navigate(from, { replace: true });
         }
@@ -48,7 +48,7 @@ const Login = () => {
                     break;
             }
         }
-    }, [authUser, emailError, googleError])
+    }, [emailUser, googleUser, emailError, googleError, token])
 
 
 

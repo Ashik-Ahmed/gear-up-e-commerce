@@ -27,6 +27,20 @@ const Signup = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+    //create database user
+    const createDBUser = (name, email) => {
+        fetch(`http://localhost:5000/create-user/${email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authentication: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({ name, email })
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+        })
+    }
+
 
     const [token] = useToken(user);
     const navigate = useNavigate();
@@ -57,6 +71,7 @@ const Signup = () => {
         if (data.password === data.confirmPassword) {
             await createUserWithEmailAndPassword(data.email, data.password);
             await updateProfile({ displayName: data.name });
+            // createDBUser(data.name, data.email)
             resetField("name");
             resetField("email");
             resetField("password");
@@ -70,7 +85,7 @@ const Signup = () => {
 
 
 
-    if (loading) {
+    if (loading || updating) {
         return <Loading></Loading>
     }
 

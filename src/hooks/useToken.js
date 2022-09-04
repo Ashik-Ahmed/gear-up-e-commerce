@@ -6,12 +6,16 @@ const useToken = user => {
     const [token, setToken] = useState('');
     useEffect(() => {
         const email = user?.user?.email;
+        const displayName = user?.user?.displayName;
         const currentUser = {
             email: email,
+            name: displayName
         };
 
+        console.log('from inside useToken');
+
         if (email) {
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`http://localhost:5000/create-user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
