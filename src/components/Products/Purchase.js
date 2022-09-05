@@ -3,16 +3,18 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import useDBUser from '../../hooks/useDBUser';
 import useProduct from '../../hooks/useProduct';
 import Loading from '../Shared/Loading/Loading';
 
 const Purchase = () => {
 
     const [authUser] = useAuthState(auth);
+    const [dbUser, isDBLoading] = useDBUser(authUser.email);
     const { id } = useParams();
     const [product, isLoading, refetch] = useProduct(id);
 
-    if (isLoading) {
+    if (isLoading || isDBLoading) {
         return <Loading />
     }
 
@@ -21,8 +23,8 @@ const Purchase = () => {
     const handlePlaceOrder = (e) => {
         e.preventDefault();
         const orderQuantity = parseInt(e.target.quantity.value);
-        const name = e.target.name.value;
-        const phone = e.target.phone.value;
+        const name = e.target.name.value || dbUser.name;
+        const phone = e.target.phone.value || dbUser.phone;
         const address = e.target.address.value;
 
         if (orderQuantity >= minimum && orderQuantity <= quantity) {
@@ -38,6 +40,8 @@ const Purchase = () => {
                 customerAddress: address,
 
             }
+
+            console.log(orderDetails);
 
             fetch('http://localhost:5000/confirm-purchase', {
                 method: 'POST',
@@ -155,11 +159,11 @@ const Purchase = () => {
                                     <div className='w-1/2'>
                                         <div className='mb-4'>
                                             <p>Name</p>
-                                            <input name='name' type="text" placeholder='Name' className='input input-bordered w-3/4' required />
+                                            <input name='name' type="text" placeholder={dbUser.name || 'Name'} className='input input-bordered w-3/4' />
                                         </div>
                                         <div>
                                             <p>Phone Number</p>
-                                            <input name='phone' type="text" placeholder='Phone Number' className='input input-bordered w-3/4' required />
+                                            <input name='phone' type="text" placeholder={dbUser.phone || 'Phone Number'} className='input input-bordered w-3/4' />
                                         </div>
                                     </div>
                                     <div className='w-1/2'>

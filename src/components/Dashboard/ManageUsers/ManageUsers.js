@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 import UserRow from './UserRow';
 
 const ManageUsers = () => {
@@ -12,7 +13,9 @@ const ManageUsers = () => {
         }
     }).then(res => res.json()))
 
-    console.log(users);
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div className='py-6 px-2'>
@@ -29,7 +32,7 @@ const ManageUsers = () => {
                 </thead>
                 <tbody>
                     {
-                        users?.map(user => <UserRow key={user._id} user={user}></UserRow>)
+                        users?.map(user => <UserRow key={user._id} user={user} refetch={refetch}></UserRow>)
                     }
 
                 </tbody>
