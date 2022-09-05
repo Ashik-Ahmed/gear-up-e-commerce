@@ -16,6 +16,9 @@ import AddReview from './components/Dashboard/AddReview/AddReview';
 import ManageOrders from './components/Dashboard/ManageOrders/ManageOrders';
 import RequireAdmin from './components/RequireAuth/RequireAdmin';
 import ManageUsers from './components/Dashboard/ManageUsers/ManageUsers';
+import NotFound from './components/Shared/NotFound/NotFound';
+import AddProduct from './components/Dashboard/AddProduct/AddProduct';
+import ManageProducts from './components/Dashboard/ManageProducts/ManageProducts';
 
 function App() {
   return (
@@ -65,10 +68,23 @@ function App() {
             </RequireAdmin>
           }></Route>
 
+          <Route path='manage-products' element={
+            <RequireAdmin>
+              <ManageProducts />
+            </RequireAdmin>
+          }></Route>
+
+          <Route path='add-product' element={
+            <RequireAdmin>
+              <AddProduct />
+            </RequireAdmin>
+          }></Route>
+
+
         </Route>
 
 
-        <Route path='*' element></Route>
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
 
       <Footer />

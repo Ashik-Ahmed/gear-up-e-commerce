@@ -25,9 +25,9 @@ const Navbar = () => {
                         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/dashboard'>Dashboard</Link></li>
                             <li><Link to='/'>Reviews</Link></li>
-                            <li><Link to='/'>Contact Us</Link></li>
                             <li><Link to='/'>Blogs</Link></li>
                             <li><Link to='/'>Portfolio</Link></li>
+                            <li><Link to='/'>Contact Us</Link></li>
                             {/* <li tabindex="0">
                                 <a class="justify-between">
                                     Parent
@@ -46,9 +46,9 @@ const Navbar = () => {
                     <ul class="menu menu-horizontal p-0">
                         <li><Link to='/dashboard'>Dashboard</Link></li>
                         <li><Link to='/'>Reviews</Link></li>
-                        <li><Link to='/'>Contact Us</Link></li>
                         <li><Link to='/'>Blogs</Link></li>
                         <li><Link to='/'>Portfolio</Link></li>
+                        <li><Link to='/'>Contact Us</Link></li>
                         {/* <li tabindex="0">
                             <a>
                                 Parent

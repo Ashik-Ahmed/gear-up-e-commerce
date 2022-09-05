@@ -14,9 +14,9 @@ const Products = () => {
     return (
         <div className=' py-8'>
             <div className='py-4 text-4xl font-bold'>
-                <p className='inline border-black border-b-4'>Our Products</p>
+                <p className='inline border-white border-b-2'>Our Products</p>
             </div>
-            <div className='md:grid grid-cols-3 gap-16 container mx-auto'>
+            <div className='md:grid grid-cols-3 gap-8 container mx-auto'>
                 {
                     products.slice(0, 3).map(product => <Product key={product._id} product={product}></Product>)
                 }
