@@ -26,8 +26,13 @@ const Dashboard = () => {
                     <label for="my-drawer-2" class="drawer-overlay"></label>
                     <ul class="menu py-4 overflow-y-auto w-48 text-base-content">
                         <li><Link to='/dashboard'>My Profile</Link></li>
-                        <li><Link to='my-orders'>My Orders</Link></li>
-                        <li><Link to='add-review'>Add a Review</Link></li>
+                        {
+                            !dbUser.role &&
+                            <>
+                                <li><Link to='my-orders'>My Orders</Link></li>
+                                <li><Link to='add-review'>Add a Review</Link></li>
+                            </>
+                        }
                         {
                             dbUser.role === 'admin' &&
                             <>

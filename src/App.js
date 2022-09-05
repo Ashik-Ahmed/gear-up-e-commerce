@@ -21,6 +21,8 @@ import AddProduct from './components/Dashboard/AddProduct/AddProduct';
 import ManageProducts from './components/Dashboard/ManageProducts/ManageProducts';
 import Reviews from './components/Home/Reviews/Reviews';
 import Contact from './components/Contact/Contact';
+import Blogs from './components/Blogs/Blogs';
+import Payment from './components/Dashboard/MyOrders/Payment';
 
 function App() {
   return (
@@ -82,11 +84,14 @@ function App() {
             </RequireAdmin>
           }></Route>
 
+          <Route path='payment/:id' element={<Payment />}></Route>
+
 
         </Route>
 
         <Route path='/reviews' element={<Reviews />}></Route>
         <Route path='/contact-us' element={<Contact />}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
 
 
         <Route path='*' element={<NotFound />}></Route>

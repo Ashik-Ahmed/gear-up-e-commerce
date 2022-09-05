@@ -29,7 +29,7 @@ const MyOrderRow = ({ myOrder, setModal }) => {
             <td className='flex gap-x-3'>
                 {
                     dbUser.role !== 'admin' &&
-                    <Link to={`/product/${_id}`} className='btn btn-xs bg-teal-400 hover:bg-teal-600 border-0'>Pay</Link>
+                    <Link to={`/dashboard/payment/${_id}`} className='btn btn-xs bg-teal-400 hover:bg-teal-600 border-0'>Pay</Link>
                 }
                 <label onClick={() => setModal(myOrder)} for="details-modal" className="btn btn-xs bg-indigo-400 hover:bg-indigo-600 border-0 modal-button">Details</label>
                 <label onClick={() => setModal(myOrder)} for="delete-modal" class="btn btn-xs bg-red-400 hover:bg-red-600 border-0 modal-button">Cancel</label>
