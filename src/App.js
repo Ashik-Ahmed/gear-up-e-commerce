@@ -19,6 +19,8 @@ import ManageUsers from './components/Dashboard/ManageUsers/ManageUsers';
 import NotFound from './components/Shared/NotFound/NotFound';
 import AddProduct from './components/Dashboard/AddProduct/AddProduct';
 import ManageProducts from './components/Dashboard/ManageProducts/ManageProducts';
+import Reviews from './components/Home/Reviews/Reviews';
+import Contact from './components/Contact/Contact';
 
 function App() {
   return (
@@ -82,6 +84,9 @@ function App() {
 
 
         </Route>
+
+        <Route path='/reviews' element={<Reviews />}></Route>
+        <Route path='/contact-us' element={<Contact />}></Route>
 
 
         <Route path='*' element={<NotFound />}></Route>

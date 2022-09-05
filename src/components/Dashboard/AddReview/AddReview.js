@@ -2,21 +2,26 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import useDBUser from '../../../hooks/useDBUser';
+import Loading from '../../Shared/Loading/Loading';
 
 const AddReview = () => {
 
     const [authUser] = useAuthState(auth);
+    const [dbUser, isLoading] = useDBUser(authUser.email);
 
     const handleSubmitReview = (e) => {
         e.preventDefault();
 
-        const name = authUser.displayName;
-        const email = authUser.email;
+        const name = dbUser.name;
+        const photo = dbUser.photo;
+        const email = dbUser.email;
         const designation = e.target.designation.value;
         const review = e.target.review.value;
 
         const reviewDetails = {
             name,
+            photo,
             email,
             designation,
             review
@@ -39,6 +44,10 @@ const AddReview = () => {
                 toast.error('Failed');
             }
         })
+    }
+
+    if (isLoading) {
+        return <Loading />
     }
 
     return (
