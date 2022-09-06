@@ -19,10 +19,11 @@ import ManageUsers from './components/Dashboard/ManageUsers/ManageUsers';
 import NotFound from './components/Shared/NotFound/NotFound';
 import AddProduct from './components/Dashboard/AddProduct/AddProduct';
 import ManageProducts from './components/Dashboard/ManageProducts/ManageProducts';
-import Reviews from './components/Home/Reviews/Reviews';
 import Contact from './components/Contact/Contact';
 import Blogs from './components/Blogs/Blogs';
 import Payment from './components/Dashboard/MyOrders/Payment';
+import UpdateProduct from './components/Products/UpdateProduct';
+import Reviews from './components/Reviews/Reviews';
 
 function App() {
   return (
@@ -84,7 +85,17 @@ function App() {
             </RequireAdmin>
           }></Route>
 
-          <Route path='payment/:id' element={<Payment />}></Route>
+          <Route path='payment/:id' element={
+            <RequireAuth>
+              <Payment />
+            </RequireAuth>
+          }></Route>
+
+          <Route path='update-product/:id' element={
+            <RequireAdmin>
+              <UpdateProduct />
+            </RequireAdmin>
+          }></Route>
 
 
         </Route>

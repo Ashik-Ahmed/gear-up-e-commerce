@@ -1,17 +1,17 @@
 import React from 'react';
 import Products from '../Products/Products';
 import Banner from './Banner';
-import Reviews from './Reviews/Reviews';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { TbTruckDelivery } from 'react-icons/tb';
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
+import ReviewLimited from './ReviewLimited';
 
 const Home = () => {
     return (
         <div className='bg-gray-200'>
             <Banner />
             <Products />
-            <Reviews />
+            <ReviewLimited />
 
             <div className="stats shadow mb-6 mt-12">
 

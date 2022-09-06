@@ -1,9 +1,21 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useDBUser from '../../hooks/useDBUser';
+import Loading from '../Shared/Loading/Loading';
 
 const Product = ({ product }) => {
 
+    const [authUser] = useAuthState(auth);
+    const [dbUser, isLoading] = useDBUser(authUser?.email);
+    console.log(dbUser);
+
     const { _id, name, image, description, category, minimum, quantity, price } = product;
+
+    // if (isLoading) {
+    //     return <Loading />
+    // }
 
     return (
         <div class="p-4 w-full text-left bg-white rounded">
@@ -19,7 +31,12 @@ const Product = ({ product }) => {
                 <p class="mt-1 text-xl">$ {price}</p>
             </div>
             <div class="card-actions justify-end">
-                <Link to={`/purchase/${_id}`} class="btn btn-sm bg-cyan-500 hover:bg-cyan-600 border-0">Buy Now</Link>
+                {
+                    dbUser?.role ?
+                        <Link to={`dashboard/update-product/${_id}`} class="btn btn-sm bg-cyan-500 hover:bg-cyan-600 border-0">Update</Link>
+                        :
+                        <Link to={`/purchase/${_id}`} class="btn btn-sm bg-cyan-500 hover:bg-cyan-600 border-0">Buy Now</Link>
+                }
             </div>
         </div>
 

@@ -6,13 +6,13 @@ const OrderDetailsModal = ({ myOrder }) => {
 
     const [product, isLoading] = useProduct(myOrder.productId)
 
-    console.log(myOrder);
+    console.log(product);
 
     const { quantity, amount } = myOrder;
 
-    if (isLoading) {
-        return < Loading />
-    }
+    // if (isLoading) {
+    //     return < Loading />
+    // }
 
     return (
         <div className='bg-gray-200'>
@@ -24,7 +24,7 @@ const OrderDetailsModal = ({ myOrder }) => {
                         <section class="text-gray-600 body-font overflow-hidden text-left">
                             <div class="container px-5 mx-auto md:flex w-full">
                                 <div class="text-left mx-auto border-r-4 md:w-1/2 pr-4">
-                                    <img alt="Product" class="max-w-md max-h-md object-center rounded" src={product.image} />
+                                    <img alt="Product" class="max-w-md max-h-md object-center rounded" src={product?.image} />
                                     {/* <div class="w-full mt-6 lg:mt-0">
                                         <h2 class="text-sm title-font text-gray-500 tracking-widest">{product.supplier}</h2>
                                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
@@ -49,7 +49,7 @@ const OrderDetailsModal = ({ myOrder }) => {
                                             <div className='mt-2 md:bg-white pl-4 py-2 rounded'>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Product</p>
-                                                    <p className=' w-1/2 p-1 items-center'>: {product.name}</p>
+                                                    <p className=' w-1/2 p-1 items-center'>: {product?.name}</p>
                                                 </div>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Order Date</p>
@@ -65,7 +65,7 @@ const OrderDetailsModal = ({ myOrder }) => {
                                                 </div>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Unit Price</p>
-                                                    <p className=' w-1/2 p-1 items-center'>: $ {product.price}</p>
+                                                    <p className=' w-1/2 p-1 items-center'>: $ {product?.price}</p>
                                                 </div>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Quantity</p>

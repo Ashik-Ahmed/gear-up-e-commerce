@@ -2,6 +2,7 @@ import React from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { toast } from 'react-toastify';
 import useProduct from '../../../hooks/useProduct';
+import Loading from '../../Shared/Loading/Loading';
 
 const CancelOrderModal = ({ myOrder, refetch }) => {
 
@@ -9,7 +10,7 @@ const CancelOrderModal = ({ myOrder, refetch }) => {
 
     // console.log(myOrder);
 
-    const updatedProduct = { quantity: myOrder.quantity + product.quantity };
+    const updatedProduct = { quantity: myOrder?.quantity + product?.quantity };
 
     // console.log(updatedProduct);
 
@@ -38,6 +39,10 @@ const CancelOrderModal = ({ myOrder, refetch }) => {
                     // e.target.reset();
                 })
         })
+    }
+
+    if (isLoading) {
+        return <Loading />
     }
 
     return (

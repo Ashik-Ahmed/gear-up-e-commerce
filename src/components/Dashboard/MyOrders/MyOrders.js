@@ -9,7 +9,7 @@ import OrderDetailsModal from './OrderDetailsModal';
 
 const MyOrders = () => {
 
-    const [modal, setModal] = useState();
+    const [modal, setModal] = useState(null);
 
     const [authUser] = useAuthState(auth);
 
@@ -53,7 +53,7 @@ const MyOrders = () => {
         return <Loading />
     }
 
-    console.log(myOrders);
+    // console.log(myOrders);
 
     return (
         <div className='py-6 px-2'>
@@ -65,7 +65,7 @@ const MyOrders = () => {
                         <th className='invisible md:visible bg-cyan-500'>Quantity</th>
                         <th className='invisible md:visible bg-cyan-500'>Total</th>
                         <th className='invisible md:visible bg-cyan-500'>Payment</th>
-                        <th className='invisible md:visible bg-cyan-500'>Status</th>
+                        <th className='invisible md:visible bg-cyan-500'>Shipment</th>
                         <th className='bg-cyan-500'>Action</th>
                     </tr>
                 </thead>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useDBUser from '../../hooks/useDBUser';
@@ -13,6 +13,8 @@ const Purchase = () => {
     const [dbUser, isDBLoading] = useDBUser(authUser.email);
     const { id } = useParams();
     const [product, isLoading, refetch] = useProduct(id);
+
+    const navigate = useNavigate();
 
     if (isLoading || isDBLoading) {
         return <Loading />
@@ -31,9 +33,9 @@ const Purchase = () => {
 
             const orderDetails = {
                 productId: _id,
+                productName: product.name,
                 quantity: orderQuantity,
                 amount: orderQuantity * parseInt(price),
-                payment: 'pending',
                 customerEmail: authUser.email,
                 customerName: name,
                 customerPhone: phone,
@@ -68,6 +70,7 @@ const Purchase = () => {
                         .then(res => res.json())
                         .then(data => {
                             e.target.reset();
+                            navigate('/dashboard/my-orders');
                         })
                 }
             })
