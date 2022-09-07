@@ -12,7 +12,7 @@ const ProductDetailsModal = ({ product, refetch }) => {
         }
 
         // update quantity to DB
-        fetch(`http://localhost:5000/update-product/${product._id}`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/update-product/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

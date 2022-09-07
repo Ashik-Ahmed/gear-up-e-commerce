@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 const useProducts = () => {
-    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('http://localhost:5000/products', {
+    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://gear-up-ecommerce-server.onrender.com/products', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

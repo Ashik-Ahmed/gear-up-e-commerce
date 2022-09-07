@@ -4,7 +4,7 @@ import ReviewCard from './ReviewCard';
 
 const Reviews = () => {
 
-    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('http://localhost:5000/reviews', {
+    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('https://gear-up-ecommerce-server.onrender.com/reviews', {
         method: 'GET',
         headers: {
             'content-type': 'application/json'

@@ -9,7 +9,7 @@ const Product = ({ product }) => {
 
     const [authUser] = useAuthState(auth);
     const [dbUser, isLoading] = useDBUser(authUser?.email);
-    console.log(dbUser);
+    // console.log(dbUser);
 
     const { _id, name, image, description, category, minimum, quantity, price } = product;
 

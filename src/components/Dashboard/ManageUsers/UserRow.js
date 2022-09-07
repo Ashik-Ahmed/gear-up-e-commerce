@@ -11,7 +11,7 @@ const UserRow = ({ user, refetch }) => {
 
 
         // update the role to DB 
-        fetch(`http://localhost:5000/create-user/${email}`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/create-user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

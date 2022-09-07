@@ -13,19 +13,18 @@ const MyOrders = () => {
 
     const [authUser] = useAuthState(auth);
 
-    const { data: myOrders, isLoading, refetch } = useQuery('myOrders', () => fetch(`http://localhost:5000/orders?email=${authUser.email}`, {
+    const { data: myOrders, isLoading, refetch } = useQuery('myOrders', () => fetch(`https://gear-up-ecommerce-server.onrender.com/orders?email=${authUser.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-    })
-        .then(res => res.json()))
+    }).then(res => res.json()))
 
 
     // const handleOrderCancel = (id) => {
     //     console.log('Product deleted', id);
 
-    //     fetch(`http://localhost:5000/delete-order?id=${id}`, {
+    //     fetch(`https://gear-up-ecommerce-server.onrender.com/delete-order?id=${id}`, {
     //         method: 'DELETE',
     //         headers: {
     //             authorization: `Bearer ${localStorage.getItem('accesToken')}`
@@ -35,7 +34,7 @@ const MyOrders = () => {
     //         toast.success('Order Canceled Successfully');
     //         refetch();
 
-    //         fetch(`http://localhost:5000/update-product/${id}`, {
+    //         fetch(`https://gear-up-ecommerce-server.onrender.com/update-product/${id}`, {
     //             method: 'PUT',
     //             headers: {
     //                 'content-type': 'application/json'
@@ -71,7 +70,7 @@ const MyOrders = () => {
                 </thead>
                 <tbody>
                     {
-                        myOrders?.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder} setModal={setModal}></MyOrderRow>)
+                        myOrders?.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder} setModal={setModal} refetch={refetch}></MyOrderRow>)
                     }
                     {
 
@@ -80,7 +79,7 @@ const MyOrders = () => {
                     }
                     {
 
-                        modal && <OrderDetailsModal myOrder={modal}></OrderDetailsModal>
+                        modal && <OrderDetailsModal myOrder={modal} setModal={setModal}></OrderDetailsModal>
 
                     }
                 </tbody>

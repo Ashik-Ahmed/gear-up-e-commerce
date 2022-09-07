@@ -13,7 +13,7 @@ const Payment = () => {
 
     const { id } = useParams();
 
-    const { data: myOrder, isLoading, refetch } = useQuery('myOrder', () => fetch(`http://localhost:5000/order?id=${id}`, {
+    const { data: myOrder, isLoading, refetch } = useQuery('myOrder', () => fetch(`https://gear-up-ecommerce-server.onrender.com/order?id=${id}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',

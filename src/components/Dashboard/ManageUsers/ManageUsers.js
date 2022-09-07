@@ -5,7 +5,7 @@ import UserRow from './UserRow';
 
 const ManageUsers = () => {
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://gear-up-ecommerce-server.onrender.com/users', {
         method: 'GET',
         headers: {
             'content-type': 'application.json',

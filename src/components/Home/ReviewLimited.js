@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import ReviewCard from '../Reviews/ReviewCard';
 import Loading from '../Shared/Loading/Loading';
 
 const ReviewLimited = () => {
-    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('http://localhost:5000/reviews', {
+    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('https://gear-up-ecommerce-server.onrender.com/reviews', {
         method: 'GET',
         headers: {
             'content-type': 'application/json'
@@ -25,6 +26,8 @@ const ReviewLimited = () => {
                         {
                             reviews.slice(0, 3).map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
                         }
+                    </div><div className='mt-8 flex justify-end'>
+                        <Link to='/reviews' className='btn  btn-sm'>See All</Link>
                     </div>
                 </div>
             </section>

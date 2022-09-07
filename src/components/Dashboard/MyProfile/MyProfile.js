@@ -34,7 +34,7 @@ const MyProfile = () => {
             photo
         }
 
-        fetch(`http://localhost:5000/create-user/${dbUser.email}`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/create-user/${dbUser.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

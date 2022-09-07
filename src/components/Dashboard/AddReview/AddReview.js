@@ -27,7 +27,7 @@ const AddReview = () => {
             review
         }
 
-        fetch('http://localhost:5000/add-review', {
+        fetch('https://gear-up-ecommerce-server.onrender.com/add-review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

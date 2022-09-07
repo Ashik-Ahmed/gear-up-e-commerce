@@ -15,7 +15,7 @@ const useToken = user => {
         console.log('from inside useToken');
 
         if (email) {
-            fetch(`http://localhost:5000/create-user/${email}`, {
+            fetch(`https://gear-up-ecommerce-server.onrender.com/create-user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',

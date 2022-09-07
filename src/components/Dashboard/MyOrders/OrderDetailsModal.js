@@ -6,13 +6,13 @@ const OrderDetailsModal = ({ myOrder }) => {
 
     const [product, isLoading] = useProduct(myOrder.productId)
 
-    console.log(product);
+    // console.log(product);
 
     const { quantity, amount } = myOrder;
 
-    // if (isLoading) {
-    //     return < Loading />
-    // }
+    if (isLoading) {
+        return < Loading />
+    }
 
     return (
         <div className='bg-gray-200'>
@@ -57,7 +57,7 @@ const OrderDetailsModal = ({ myOrder }) => {
                                                 </div>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Payment Status</p>
-                                                    <p className=' w-1/2 p-1 items-center'>: {myOrder.payment || 'Pending'}</p>
+                                                    <p className=' w-1/2 p-1 items-center'>: {myOrder.payment ? 'Paid' : 'Pending'}</p>
                                                 </div>
                                                 <div className='flex'>
                                                     <p className=' w-1/2 p-1 items-center font-semibold'>Shipment Status</p>

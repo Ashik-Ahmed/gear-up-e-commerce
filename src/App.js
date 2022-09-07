@@ -24,6 +24,7 @@ import Blogs from './components/Blogs/Blogs';
 import Payment from './components/Dashboard/MyOrders/Payment';
 import UpdateProduct from './components/Products/UpdateProduct';
 import Reviews from './components/Reviews/Reviews';
+import Products from './components/Products/Products';
 
 function App() {
   return (
@@ -100,6 +101,7 @@ function App() {
 
         </Route>
 
+        <Route path='/products' element={<Products />}></Route>
         <Route path='/reviews' element={<Reviews />}></Route>
         <Route path='/contact-us' element={<Contact />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>

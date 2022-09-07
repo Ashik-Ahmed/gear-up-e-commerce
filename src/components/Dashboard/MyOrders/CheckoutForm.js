@@ -19,7 +19,7 @@ const CheckoutForm = ({ myOrder }) => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -27,7 +27,7 @@ const CheckoutForm = ({ myOrder }) => {
             },
             body: JSON.stringify({ amount })
         }).then(res => res.json()).then(data => {
-            console.log(data.client_secret);
+            // console.log(data.client_secret);
             if (data?.client_secret) {
                 setClientSecret(data.client_secret);
             }
@@ -88,7 +88,7 @@ const CheckoutForm = ({ myOrder }) => {
             const payment = {
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/order-payment/${myOrder._id}`, {
+            fetch(`https://gear-up-ecommerce-server.onrender.com/order-payment/${myOrder._id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -97,9 +97,9 @@ const CheckoutForm = ({ myOrder }) => {
                 body: JSON.stringify(payment)
             }).then(res => res.json()).then(data => {
                 setProcessing(false);
-                console.log(data);
+                // console.log(data);
             })
-            navigate('/dashboard/my-orders');
+            // navigate('/dashboard/my-orders');
         }
     }
 

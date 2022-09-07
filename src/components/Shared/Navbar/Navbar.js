@@ -27,7 +27,6 @@ const Navbar = () => {
                             <li><Link to='/dashboard'>Dashboard</Link></li>
                             <li><Link to='/reviews'>Reviews</Link></li>
                             <li><Link to='/blogs'>Blogs</Link></li>
-                            <li><Link to='/'>Portfolio</Link></li>
                             <li><Link to='/contact-us'>Contact Us</Link></li>
                             {/* <li tabindex="0">
                                 <a class="justify-between">
@@ -48,7 +47,6 @@ const Navbar = () => {
                         <li><Link to='/dashboard'>Dashboard</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/blogs'>Blogs</Link></li>
-                        <li><Link to='/'>Portfolio</Link></li>
                         <li><Link to='/contact-us'>Contact Us</Link></li>
                         {/* <li tabindex="0">
                             <a>

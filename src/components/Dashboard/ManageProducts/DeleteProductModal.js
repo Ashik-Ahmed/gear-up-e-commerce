@@ -6,7 +6,7 @@ const DeleteProductModal = ({ product, refetch }) => {
 
     const handleProductDelete = (id) => {
 
-        fetch(`http://localhost:5000/delete-product?id=${id}`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/delete-product?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

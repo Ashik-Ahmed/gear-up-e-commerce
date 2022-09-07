@@ -5,6 +5,7 @@ import useProduct from '../../../hooks/useProduct';
 import Loading from '../../Shared/Loading/Loading';
 
 const CancelOrderModal = ({ myOrder, refetch }) => {
+    console.log(refetch);
 
     const [product, isLoading] = useProduct(myOrder.productId);
 
@@ -16,7 +17,7 @@ const CancelOrderModal = ({ myOrder, refetch }) => {
 
     const handleOrderCancel = (orderId, productId) => {
 
-        fetch(`http://localhost:5000/delete-order?id=${orderId}`, {
+        fetch(`https://gear-up-ecommerce-server.onrender.com/delete-order?id=${orderId}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accesToken')}`
@@ -26,7 +27,7 @@ const CancelOrderModal = ({ myOrder, refetch }) => {
             toast.success('Order Canceled Successfully');
             refetch();
 
-            fetch(`http://localhost:5000/update-product/${productId}`, {
+            fetch(`https://gear-up-ecommerce-server.onrender.com/update-product/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
