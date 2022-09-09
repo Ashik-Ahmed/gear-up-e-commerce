@@ -40,15 +40,20 @@ const Home = () => {
                             }
                         </div>
                         {
-                            !dbUser.role &&
-                            <div className='mt-8 flex justify-end'>
-                                <Link to='/products' className='btn  btn-sm'>Browse All</Link>
-                            </div>
+                            dbUser &&
+                            <>
+                                {
+                                    !dbUser?.role &&
+                                    < div className='mt-8 flex justify-end'>
+                                        <Link to='/products' className='btn  btn-sm'>Browse All</Link>
+                                    </div>
+                                }
+                            </>
                         }
                     </div>
                 </section>
 
-            </div>
+            </div >
             <ReviewLimited />
 
             <div className="stats shadow mb-6 mt-12">
@@ -90,7 +95,7 @@ const Home = () => {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 };
 
