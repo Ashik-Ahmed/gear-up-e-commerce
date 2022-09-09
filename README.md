@@ -30,6 +30,7 @@ Pass: admin123
 * REACT Firebase Hook for Login/Signup Authentication
 * React Query
 * Custom Hooks
+* REACT Hook Form
 * REACT Toastify
 * JSON Web Token (JWT) for secure data transfer
 * Stripe for payment
