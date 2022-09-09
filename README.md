@@ -1,6 +1,6 @@
 # Gear Up - Motorbike Parts Wholeseller
 
-This project was bootstrapped with [Click here](https://gear-up-a7b20.web.app/).
+For the Live view [Click here](https://gear-up-a7b20.web.app/).
 
 ### Admin Access
 Email: admin@mail.com
