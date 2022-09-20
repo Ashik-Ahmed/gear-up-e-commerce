@@ -8,6 +8,7 @@ import useDBUser from '../../../hooks/useDBUser';
 const Navbar = () => {
 
     const [authUser] = useAuthState(auth);
+    console.log(authUser);
 
     //sign out the loggedin user
     const handleSignout = () => {
@@ -61,7 +62,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {
+                    {/* {
                         authUser ?
 
                             <div>
@@ -70,7 +71,31 @@ const Navbar = () => {
                             </div>
                             :
                             <Link to='/login' className="btn btn-sm bg-gray-600 border-0">Login</Link>
-                    }
+                    } */}
+                    <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={authUser?.photoURL || `https://placeimg.com/80/80/people`} />
+                            </div>
+                        </label>
+                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                            {
+                                authUser ?
+                                    <div>
+                                        <li>
+                                            <a className="justify-between">
+                                                {authUser.email}
+                                            </a>
+                                        </li>
+                                        <li onClick={handleSignout}><a>Logout</a></li>
+                                    </div>
+                                    :
+                                    <div>
+                                        <li><Link to='/login'>Login</Link></li>
+                                    </div>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
